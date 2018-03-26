@@ -4,6 +4,16 @@ class Vec {
     this.x = x;
     this.y = y;
   }
+  get len()
+  {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
+  }
+  set len(value)
+  {
+    const fact = value / this.len;
+    this.x *= fact;
+    this.y *= fact;
+  }
 }
 
 class Rect {
@@ -95,7 +105,7 @@ class Pong
     let lastTime;
     const callback = (millis) => {
       if (lastTime) {
-        this.update((millis - lastTime) / 500);
+        this.update((millis - lastTime) / 1000);
       }
       lastTime = millis;
       requestAnimationFrame(callback);
@@ -109,7 +119,11 @@ class Pong
   {
     if (player.left  < ball.right && player.right > ball.left &&
         player.top < ball.bottom && player.bottom > ball.top) {
+          const len = ball.vel.len;
           ball.vel.x = - ball.vel.x;
+          ball.vel.y += 300 * (Math.random() - .5);
+          ///ball goes faster every time after you hit it
+          ball.vel.len *= 1.05;
         }
   }
   draw()
@@ -129,15 +143,22 @@ class Pong
   }
 reset ()
 {
-  this.ball.pos.x = 100;
-  this.ball.pos.y = 50;
+  this.ball.pos.x = this._canvas.width / 2;
+  this.ball.pos.y = this._canvas.height / 2;
 
-  this.ball.vel.x = 100;
-  this.ball.vel.y = 100;
+  this.ball.vel.x = 0;
+  this.ball.vel.y = 0;
 }
 
 
-
+start()
+{
+  if (this.ball.vel.x === 0 && this.ball.vel.y === 0) {
+    this.ball.vel.x = 300 * (Math.random() > .5 ? 1 : -1);
+    this.ball.vel.y = 300 * (Math.random() * 2 - 1);
+    this.ball.vel.len = 350;
+  }
+}
   //// animating the Ball
 update(dt) {
     this.ball.pos.x += this.ball.vel.x * dt;
@@ -175,4 +196,8 @@ const pong = new Pong(canvas);
 
 canvas.addEventListener('mousemove', event => {
   pong.players[0].pos.y = event.offsetY;
+})
+
+canvas.addEventListener('click', event => {
+  pong.start();
 })

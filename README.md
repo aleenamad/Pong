@@ -3,7 +3,7 @@
 ## Building Pong with basic Javascript
 
 
-## You can play the game here [here].
+## You can play the game [here].
 
 
-[here]: <tender-hair.surge.sh>
+[here]: tender-hair.surge.sh

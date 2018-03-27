@@ -130,7 +130,7 @@ this.CHARS = [
   canvas.height = this.CHAR_PIXEL * 5;
   canvas.width = this.CHAR_PIXEL * 3;
   const context = canvas.getContext('2d');
-  context.fillStyle = 'white';
+  context.fillStyle = 'black';
   str.split('').forEach((fill, i ) => {
     if (fill === '1') {
       context.fillRect((i % 3) * this.CHAR_PIXEL, (i / 3 | 0) * this.CHAR_PIXEL, this.CHAR_PIXEL, this.CHAR_PIXEL);
@@ -158,7 +158,7 @@ return canvas;
   draw()
   {
     //////rectangle background
-      this._context.fillStyle = '#000';
+      this._context.fillStyle = 'white';
       this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
 
       this.drawRect(this.ball);

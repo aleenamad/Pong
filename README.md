@@ -6,4 +6,4 @@
 ## You can play the game here [here].
 
 
-[here] : tender-hair.surge.sh
+[here]: <tender-hair.surge.sh>

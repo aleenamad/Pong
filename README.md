@@ -1,5 +1,5 @@
 # Pong
-Building Pong with basic Javascript and using this [tutorial].
+Built Pong with basic Javascript and using this [tutorial].
 
 
 ## You can play the game [here].
